@@ -5,7 +5,7 @@ def notify_gitaction():
     dt = datetime.datetime.now()
     ts = dt.strftime("%Y_%b_%d-%H:%M")
     data = {
-        'event': 'GIT PUSH',
+        'event': 'GIT PUSH event',
         'ts': ts
     }
     with open("notify_gitaction.json", 'w', encoding='utf-8') as fd:
