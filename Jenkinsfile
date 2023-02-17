@@ -9,7 +9,7 @@ pipeline {
       }
     }
     
-    stage('Deploy') {
+    stage('Deploy test') {
       steps {
         // Use SSH to copy the code from the workspace directory to the EC2 instance
         sh 'ls -l'  
