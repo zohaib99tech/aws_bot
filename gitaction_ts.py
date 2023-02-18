@@ -1,7 +1,7 @@
 import json
 import datetime
 
-def notify_gitaction():
+def notify_gitPUSHaction():
     dt = datetime.datetime.now()
     ts = dt.strftime("%Y_%b_%d-%H:%M")
     data = {
@@ -12,4 +12,4 @@ def notify_gitaction():
         fd.write(json.dumps(data, indent=4))
 
 if __name__ == "__main__":
-    notify_gitaction()
+    notify_gitPUSHaction()
