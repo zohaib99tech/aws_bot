@@ -13,10 +13,10 @@ pipeline {
       steps {
         // Copy source to working directory
         
-        sh 'cp -r ./aws_bot /home/admin'
+        sh 'cp ./* /home/admin/'
         
         // Restart the application server on the EC2 instance
-        sh 'sudo python /home/admin/aws_bot/gitaction_ts.py'
+        sh 'sudo python /home/admin/gitaction_ts.py'
 
       }
       // steps {
