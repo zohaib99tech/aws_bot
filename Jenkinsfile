@@ -14,9 +14,9 @@ pipeline {
         // Copy source to working directory
         
         sh 'cp ./* /home/admin/'
-        
+        sh 'cd /home/admin/'
         // Restart the application server on the EC2 instance
-        sh 'sudo python /home/admin/gitaction_ts.py'
+        sh 'python /home/admin/gitaction_ts.py'
 
       }
       // steps {
