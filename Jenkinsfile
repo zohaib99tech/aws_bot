@@ -16,7 +16,7 @@ pipeline {
         sh 'cp ./* /home/admin/'
         sh 'cd /home/admin/'
         // Restart the application server on the EC2 instance
-        sh 'python /home/admin/gitaction_ts.py'
+        sh 'python3 /home/admin/gitaction_ts.py'
 
       }
       // steps {
