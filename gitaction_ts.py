@@ -8,7 +8,7 @@ def notify_gitPUSHaction():
         'event': 'GIT PUSH event',
         'ts': ts
     }
-    with open("notify_gitaction.json", 'w', encoding='utf-8') as fd:
+    with open("out.json", 'w', encoding='utf-8') as fd:
         fd.write(json.dumps(data, indent=4))
 
 if __name__ == "__main__":
