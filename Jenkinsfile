@@ -12,12 +12,12 @@ pipeline {
     stage('Deploy AWS EC2 instance') {
       steps {
         // create temp.directory for CICD tests
-        sh 'mkdir -p /var/lib/jenkins/CICD-tests'
+        sh 'mkdir -p /var/lib/jenkins/CICD-tests/date +"%I_%M_%p"'
 
         // Copy source to working directory
-        sh 'cp ./* /var/lib/jenkins/CICD-tests'
+        sh 'cp ./* /var/lib/jenkins/CICD-tests/date +"%I_%M_%p"'
 
-        sh 'cd /var/lib/jenkins/CICD-tests'
+        sh 'cd /var/lib/jenkins/CICD-tests/date +"%I_%M_%p"'
         // Restart the application server on the EC2 instance
         sh 'python3 ./gitaction_ts.py'
 
