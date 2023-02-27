@@ -8,10 +8,13 @@ pipeline {
         git url: 'https://github.com/zohaib99tech/aws_bot.git', branch: 'main'
       }
     }
-    
+    stage('Get Timestamp'){
+      steps{
+      def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
+      }
+    }
     stage('Deploy AWS EC2 instance') {
       steps {
-        def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
         // create temp.directory for CICD tests
         sh 'mkdir -p /var/lib/jenkins/CICD-tests/'+$timeStamp
 
