@@ -16,7 +16,7 @@ pipeline {
                   def testFolder = "test-${timestamp}"
                   sh "mkdir -p /var/lib/jenkins/CICD-tests/${testFolder}"
                   // Copy source to working directory
-                  sh "cp ./* /var/lib/jenkins/CICD-tests/${testFolder}"
+                  sh "cp -r ./* /var/lib/jenkins/CICD-tests/${testFolder}"
                   sh "cd /var/lib/jenkins/CICD-tests/${testFolder}"
                   // Restart the application server on the EC2 instance
                   sh 'python3 ./gitaction_ts.py'
