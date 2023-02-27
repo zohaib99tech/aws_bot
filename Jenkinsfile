@@ -8,22 +8,28 @@ pipeline {
         git url: 'https://github.com/zohaib99tech/aws_bot.git', branch: 'main'
       }
     }
-    stage('Get Timestamp'){
-      steps{
-      def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
-      }
-    }
+    
     stage('Deploy AWS EC2 instance') {
       steps {
-        // create temp.directory for CICD tests
-        sh 'mkdir -p /var/lib/jenkins/CICD-tests/'+$timeStamp
+        script {
+                  def timestamp = new Date().format('yyyyMMdd-HHmmss')
+                  def testFolder = "test-${timestamp}"
+                  sh "mkdir -p /var/lib/jenkins/CICD-tests/${testFolder}"
+                  // Copy source to working directory
+                  sh "cp ./* /var/lib/jenkins/CICD-tests/${testFolder}"
+                  sh "cd /var/lib/jenkins/CICD-tests/${testFolder}"
+                  // Restart the application server on the EC2 instance
+                  sh 'python3 ./gitaction_ts.py'
+                }
+        // // create temp.directory for CICD tests
+        // sh 'mkdir -p /var/lib/jenkins/CICD-tests/'+$timeStamp
 
-        // Copy source to working directory
-        sh 'cp ./* /var/lib/jenkins/CICD-tests/'+$timeStamp
+        // // Copy source to working directory
+        // sh 'cp ./* /var/lib/jenkins/CICD-tests/'+$timeStamp
 
-        sh 'cd /var/lib/jenkins/CICD-tests/'+$timeStamp
-        // Restart the application server on the EC2 instance
-        sh 'python3 ./gitaction_ts.py'
+        // sh 'cd /var/lib/jenkins/CICD-tests/'+$timeStamp
+        // // Restart the application server on the EC2 instance
+        // sh 'python3 ./gitaction_ts.py'
 
       }
       // steps {
